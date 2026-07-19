@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Camera, Play, MessageCircle } from 'lucide-react';
 import { nav, site } from '@/data/site';
 
@@ -10,7 +11,7 @@ export function Footer() {
       <div className="container-x">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-sm">
-            <a href="/" className="flex items-center gap-2.5">
+            <Link href="/" className="flex items-center gap-2.5">
               <Image
                 src="/assets/images/logo.png"
                 alt="Team Radeon logo"
@@ -21,7 +22,7 @@ export function Footer() {
               <span className="font-heading text-lg tracking-wide">
                 {site.shortName}
               </span>
-            </a>
+            </Link>
             <p className="mt-4 text-sm text-muted">
               {site.school} — STEM Racing. Engineering the RF4 for
               the {site.season} season.
