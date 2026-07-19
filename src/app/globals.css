@@ -1,0 +1,240 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Mokoto';
+  src: url('/fonts/Mokoto.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --font-display: 'Mokoto';
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-ink text-chalk font-sans;
+  }
+
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(215, 25, 32, 0.55);
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: rgba(215, 25, 32, 0.35);
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* ── Layout ── */
+  .container-x {
+    @apply mx-auto w-full max-w-container px-5 md:px-10;
+  }
+
+  /* ── Typography ── */
+  .eyebrow {
+    /* Apple uses very subtle, small colored labels */
+    @apply text-[13px] font-semibold text-radeon tracking-wide;
+  }
+
+  .display {
+    @apply font-heading uppercase leading-[0.88] tracking-tighter;
+  }
+
+  /* ── Buttons (Apple pill style) ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-pill bg-white
+      px-5 py-2.5 text-[15px] font-semibold text-black
+      transition-all duration-200
+      hover:bg-white/90 active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-pill
+      border border-white/25 bg-white/5 px-5 py-2.5
+      text-[15px] font-semibold text-white
+      backdrop-blur-sm transition-all duration-200
+      hover:bg-white/10 active:scale-[0.98];
+  }
+
+  /* Apple-style inline link with chevron */
+  .apple-link {
+    @apply inline-flex items-center gap-1 text-[17px] font-medium text-radeon
+      transition-opacity hover:opacity-70;
+  }
+  .apple-link-sm {
+    @apply inline-flex items-center gap-1 text-[15px] font-medium text-radeon
+      transition-opacity hover:opacity-70;
+  }
+
+  /* ── Cards ── */
+  .card {
+    @apply rounded-brand border border-line bg-card;
+  }
+
+  /* Apple dark card — like the feature tiles on apple.com */
+  .card-dark {
+    @apply rounded-brand bg-[#1d1d1f] overflow-hidden;
+  }
+
+  /* ── Frosted glass ── */
+  .glass {
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+  .glass-light {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  /* ── Section headings (Apple large-copy style) ── */
+  .section-headline {
+    @apply font-heading text-[clamp(2.4rem,5.5vw,4rem)] uppercase leading-[1.05] tracking-tighter text-chalk;
+  }
+  .section-body {
+    @apply text-[17px] leading-[1.6] text-muted;
+  }
+}
+
+/* ─── Scroll-reveal ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-stagger.is-visible > *:nth-child(1) { opacity:1; transform:none; transition-delay: 0s;    }
+.reveal-stagger.is-visible > *:nth-child(2) { opacity:1; transform:none; transition-delay: 0.08s; }
+.reveal-stagger.is-visible > *:nth-child(3) { opacity:1; transform:none; transition-delay: 0.16s; }
+.reveal-stagger.is-visible > *:nth-child(4) { opacity:1; transform:none; transition-delay: 0.24s; }
+.reveal-stagger.is-visible > *:nth-child(5) { opacity:1; transform:none; transition-delay: 0.32s; }
+.reveal-stagger.is-visible > *:nth-child(6) { opacity:1; transform:none; transition-delay: 0.40s; }
+
+/* Scale reveal variant (Apple uses this on product images) */
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.97);
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-scale.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Podcast "now playing" equalizer ── */
+@keyframes playbar {
+  0%, 100% { height: 30%; }
+  50%      { height: 100%; }
+}
+.playbar {
+  height: 30%;
+  border-radius: 1px;
+  animation: playbar 0.9s ease-in-out infinite;
+}
+
+/* ── Logo glow ── */
+@keyframes logo-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px rgba(215,25,32,0.5))
+            drop-shadow(0 0 18px rgba(215,25,32,0.25));
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(215,25,32,1))
+            drop-shadow(0 0 36px rgba(215,25,32,0.6))
+            drop-shadow(0 0 70px rgba(215,25,32,0.3));
+  }
+}
+@keyframes logo-flicker {
+  0%,100%  { opacity: 1; }
+  92%      { opacity: 1; }
+  93%      { opacity: 0.6; }
+  94%      { opacity: 1; }
+  97%      { opacity: 0.8; }
+  98%      { opacity: 1; }
+}
+.logo-glow {
+  animation: logo-pulse 2.8s ease-in-out infinite, logo-flicker 7s ease-in-out infinite;
+}
+
+/* ── WebGPU Hero animations ── */
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+.fade-in {
+  animation: hero-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.fade-in-subtitle {
+  animation: hero-fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.explore-btn {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: hero-fade-up 0.8s ease forwards;
+  background: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.explore-btn:hover { color: rgba(255,255,255,0.8); }
+
+@keyframes bounce-arrow {
+  0%, 100% { transform: translateY(0);  }
+  50%       { transform: translateY(7px); }
+}
+.explore-arrow {
+  display: inline-flex;
+  animation: bounce-arrow 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .reveal-stagger > *, .reveal-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-marquee { animation: none; }
+}

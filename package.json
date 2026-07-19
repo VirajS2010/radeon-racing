@@ -1,0 +1,41 @@
+{
+  "name": "radeon-racing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Team Radeon STEM Racing — STEM Racing team site (RF4).",
+  "scripts": {
+    "dev": "next dev -p 4028",
+    "build": "next build",
+    "start": "next start -p 4028",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css,md,json}\"",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "lucide-react": "^1.25.0",
+    "motion": "^12.42.2",
+    "next": "15.5.18",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "19.0.3",
+    "@types/react-dom": "19.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.29.0",
+    "@typescript-eslint/parser": "^8.29.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.18",
+    "eslint-config-prettier": "^10.1.1",
+    "postcss": "^8.4.49",
+    "prettier": "^3.5.3",
+    "tailwindcss": "^3.4.15",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5"
+  }
+}
