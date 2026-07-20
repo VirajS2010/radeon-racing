@@ -6,6 +6,12 @@ import { enquiryTypes } from '@/data/site';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
+function encode(data: Record<string, FormDataEntryValue>) {
+  return Object.entries(data)
+    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`)
+    .join('&');
+}
+
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
   const [error, setError] = useState('');
@@ -17,31 +23,25 @@ export function ContactForm() {
 
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
-    const endpoint = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT;
 
-    // No endpoint configured yet — surface a clear, honest message rather
-    // than pretending the message was sent. Wire NEXT_PUBLIC_CONTACT_ENDPOINT
-    // in .env.local (see README) to enable real delivery.
-    if (!endpoint) {
-      setStatus('error');
-      setError(
-        'Form endpoint not configured yet. Set NEXT_PUBLIC_CONTACT_ENDPOINT to start receiving messages.',
-      );
-      return;
-    }
-
+    // Netlify Forms: submissions are posted back to "/" as a normal form
+    // POST. Netlify's build step detects the static "contact" form (see
+    // public/__forms.html) and routes matching submissions to the dashboard
+    // — no backend or third-party endpoint required.
     try {
-      const res = await fetch(endpoint, {
+      const res = await fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode(data),
       });
       if (!res.ok) throw new Error('Request failed');
       form.reset();
       setStatus('success');
     } catch {
       setStatus('error');
-      setError('Something went wrong sending your message. Please try again.');
+      setError(
+        'Something went wrong sending your message. Please try again, or email us directly.',
+      );
     }
   }
 
@@ -49,7 +49,23 @@ export function ContactForm() {
     'w-full rounded-brand border border-line bg-surface px-4 py-3 text-sm text-chalk placeholder:text-faint outline-none focus:border-radeon transition-colors duration-150';
 
   return (
-    <form onSubmit={handleSubmit} className="card p-6 md:p-8" noValidate>
+    <form
+      onSubmit={handleSubmit}
+      className="card p-6 md:p-8"
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      noValidate
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <p className="hidden">
+        <label>
+          Leave this field blank
+          <input name="bot-field" tabIndex={-1} autoComplete="off" />
+        </label>
+      </p>
+
       <h3 className="font-heading text-xl">Send a Message</h3>
 
       <div className="mt-6 grid gap-4">

@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { nav, site } from '@/data/site';
@@ -48,7 +49,7 @@ export function Navbar() {
         <nav className="container-x flex h-14 items-center justify-between md:h-16">
 
           {/* Logo */}
-          <a href="/" className="group flex items-center gap-3" aria-label={site.name}>
+          <Link href="/" className="group flex items-center gap-3" aria-label={site.name}>
             <div className="relative">
               <Image
                 src="/assets/images/logo.png"
@@ -67,7 +68,7 @@ export function Navbar() {
                 STEM Racing
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Center nav — desktop */}
           <div className="absolute left-1/2 hidden -translate-x-1/2 items-center md:flex">
@@ -89,13 +90,13 @@ export function Navbar() {
 
           {/* Right — CTA + hamburger */}
           <div className="flex items-center gap-4">
-            <a
+            <Link
               href="/#contact"
               className="hidden items-center gap-2 rounded-full border border-radeon/60 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition-all duration-200 hover:bg-radeon hover:border-radeon md:flex"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-radeon group-hover:bg-white" />
               Contact
-            </a>
+            </Link>
 
             <button
               type="button"
@@ -152,13 +153,13 @@ export function Navbar() {
                   <span className="text-radeon text-xs">0{i + 1}</span>
                 </motion.a>
               ))}
-              <a
+              <Link
                 href="/#contact"
                 onClick={() => setOpen(false)}
                 className="mt-6 block w-full rounded-full bg-radeon py-3 text-center text-[13px] font-semibold uppercase tracking-[0.2em] text-white transition-opacity hover:opacity-90"
               >
                 Contact Us
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

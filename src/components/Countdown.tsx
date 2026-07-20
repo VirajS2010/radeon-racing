@@ -35,19 +35,19 @@ export function Countdown({ targetISO }: { targetISO: string }) {
   ];
 
   return (
-    <div className="flex items-stretch gap-3 sm:gap-4" aria-live="polite">
+    <div className="flex flex-wrap items-stretch justify-center gap-2 sm:gap-4" aria-live="polite">
       {units.map(([label, value], i) => (
-        <div key={label} className="flex items-center gap-3 sm:gap-4">
+        <div key={label} className="flex items-center gap-2 sm:gap-4">
           <div className="text-center">
-            <div className="font-display font-heading text-4xl tabular-nums sm:text-5xl md:text-6xl">
+            <div className="font-display font-heading text-2xl tabular-nums sm:text-5xl md:text-6xl">
               {pad(value)}
             </div>
-            <div className="mt-2 text-[10px] uppercase tracking-[0.3em] text-faint">
+            <div className="mt-1 text-[8px] uppercase tracking-[0.2em] text-faint sm:mt-2 sm:text-[10px] sm:tracking-[0.3em]">
               {label}
             </div>
           </div>
           {i < units.length - 1 && (
-            <span className="font-heading text-3xl text-radeon sm:text-4xl">:</span>
+            <span className="font-heading text-xl text-radeon sm:text-4xl">:</span>
           )}
         </div>
       ))}

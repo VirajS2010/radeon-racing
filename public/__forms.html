@@ -1,0 +1,24 @@
+<!doctype html>
+<!--
+  Not a real page — never linked, never served to visitors.
+  Netlify's build step scans static HTML in the publish directory for
+  data-netlify forms to register them. The real form lives in
+  src/components/ContactForm.tsx and is rendered client-side, so this
+  static twin guarantees Netlify always detects the "contact" form,
+  regardless of how that page happens to render.
+-->
+<html>
+  <head><meta charset="utf-8" /><title>Form detection</title></head>
+  <body>
+    <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" netlify>
+      <input type="text" name="fullName" />
+      <input type="email" name="email" />
+      <input type="text" name="organisation" />
+      <select name="enquiryType">
+        <option value="General">General</option>
+      </select>
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+  </body>
+</html>

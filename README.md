@@ -49,16 +49,20 @@ your real files into `/public/assets/…` using the same filenames — see
 
 ## Contact form
 
-The form posts JSON to `NEXT_PUBLIC_CONTACT_ENDPOINT`. Until you set it, the
-form shows a clear "not configured" message instead of pretending to send.
+The form is wired up to **Netlify Forms** — no backend, API keys, or env vars
+required. Submissions appear in the Netlify dashboard under
+**Site configuration → Forms → contact**, and you can turn on email
+notifications there (Forms → Notifications → "Email notification").
 
-1. Copy `.env.example` to `.env.local`.
-2. Set the endpoint, e.g. a [Formspree](https://formspree.io) URL, or your own
-   Next.js Route Handler at `src/app/api/contact/route.ts`.
+This only works when the site is actually deployed on Netlify. In local dev
+(`npm run dev`) the form will submit but Netlify isn't there to catch it, so
+you'll see the generic "something went wrong" error — that's expected.
 
-```bash
-NEXT_PUBLIC_CONTACT_ENDPOINT=https://formspree.io/f/yourid
-```
+`public/__forms.html` is a static twin of the form that exists purely so
+Netlify's build step can detect the form's fields (Netlify scans static HTML
+in the publish directory at build time; it never reads client-rendered React
+output). Don't delete it, and keep its field names in sync with
+`src/components/ContactForm.tsx` if you add/remove fields.
 
 ## Fonts
 
@@ -70,8 +74,9 @@ picked up; otherwise it falls back to Anton with nothing broken.
 ## Deployment
 
 Works on any Node host or static-friendly platform (Vercel, Netlify). No env
-vars are required to build; set `NEXT_PUBLIC_CONTACT_ENDPOINT` in your host's
-dashboard to enable the form.
+vars are required to build. Contact form submissions only work on Netlify
+(see "Contact form" above) — on other hosts you'd need to swap the submit
+handler in `ContactForm.tsx` for your own endpoint.
 
 ## What changed from the Rocket export
 

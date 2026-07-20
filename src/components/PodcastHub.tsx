@@ -135,7 +135,7 @@ export function PodcastHub({ episodes }: { episodes: PodcastEpisode[] }) {
                     : 'border-line bg-card hover:border-radeon/30'
                 }`}
               >
-                <div className="relative h-16 w-28 shrink-0 overflow-hidden rounded-sharp">
+                <div className="relative h-12 w-20 shrink-0 overflow-hidden rounded-sharp sm:h-16 sm:w-28">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={ep.thumbnail}

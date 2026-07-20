@@ -65,7 +65,7 @@ export function RF4Showcase() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1.2, ease: 'easeOut' }}
-                className="relative aspect-[16/7] w-full overflow-hidden"
+                className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/9] lg:aspect-[16/7]"
               >
                 <Image
                   src="/assets/images/rf4-hero.jpg"
@@ -96,7 +96,7 @@ export function RF4Showcase() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, scale: 1.02 }}
                 transition={{ duration: 0.8 }}
-                className="relative aspect-[16/7] w-full overflow-hidden bg-black"
+                className="relative aspect-[4/3] w-full overflow-hidden bg-black sm:aspect-[16/9] lg:aspect-[16/7]"
               >
                 {/* Teaser image — car under white satin cover */}
                 <Image
@@ -112,26 +112,28 @@ export function RF4Showcase() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10" />
 
                 {/* Countdown content */}
-                <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 text-center md:pb-14">
+                <div className="absolute inset-0 flex flex-col items-center justify-end px-4 pb-6 text-center sm:pb-10 md:pb-14">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 0.6, ease: EASE }}
                   >
-                    <p className="eyebrow tracking-[0.5em]">Under the Wraps</p>
+                    <p className="eyebrow tracking-[0.3em] sm:tracking-[0.5em]">Under the Wraps</p>
                     <p
-                      className="display mt-3 text-white"
-                      style={{ fontSize: 'clamp(2.5rem, 7vw, 5rem)', lineHeight: 0.9 }}
+                      className="display mt-2 text-white sm:mt-3"
+                      style={{ fontSize: 'clamp(1.9rem, 7vw, 5rem)', lineHeight: 0.9 }}
                     >
                       The RF4.
                     </p>
-                    <p className="mt-3 text-sm text-white/50">Full reveal — 28th July 2026</p>
+                    <p className="mt-2 text-xs text-white/50 sm:mt-3 sm:text-sm">
+                      Full reveal — 28th July 2026
+                    </p>
 
-                    <div className="mt-8 flex justify-center">
+                    <div className="mt-4 flex justify-center sm:mt-8">
                       <Countdown targetISO={rf4RevealISO} />
                     </div>
 
-                    <p className="mt-6 text-[10px] uppercase tracking-[0.4em] text-white/30">
+                    <p className="mt-3 text-[9px] uppercase tracking-[0.3em] text-white/30 sm:mt-6 sm:text-[10px] sm:tracking-[0.4em]">
                       RF4 // Season 2026 — Stay tuned
                     </p>
                   </motion.div>
