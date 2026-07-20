@@ -69,7 +69,7 @@ export function PodcastHub({ episodes }: { episodes: PodcastEpisode[] }) {
       </motion.div>
 
       {/* Player + episode list */}
-      <div className="mt-12 grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-start">
+      <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-start">
         {/* Now playing */}
         <motion.div
           key={active.id}

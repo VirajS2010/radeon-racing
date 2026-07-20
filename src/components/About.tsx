@@ -27,7 +27,7 @@ export function About() {
           ))}
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
           <div className="reveal card p-8 md:p-10">
             <span className="eyebrow">Our Mission</span>
             <p className="display mt-4 text-3xl md:text-4xl">

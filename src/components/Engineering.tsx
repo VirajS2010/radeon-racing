@@ -18,7 +18,7 @@ export function Engineering() {
           race-day setup.
         </SectionHeading>
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-start">
+        <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start">
           <div className="reveal card overflow-hidden">
             <div className="relative aspect-[7/5]">
               <Image

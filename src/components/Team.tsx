@@ -107,7 +107,7 @@ export function Team() {
         {/* Outreach */}
         <div className="mt-24">
           <motion.div
-            className="grid gap-6 lg:grid-cols-[1fr_1.4fr] lg:items-end"
+            className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:items-end"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}

@@ -13,7 +13,7 @@ export function Contact() {
           you.
         </SectionHeading>
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-[1fr_1.2fr]">
+        <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
           <div className="reveal space-y-6">
             <div className="card p-6">
               <p className="eyebrow">Contact Details</p>
